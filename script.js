@@ -34,3 +34,42 @@ if ('IntersectionObserver' in window) {
 
 const year = document.querySelector('#year');
 if (year) year.textContent = String(new Date().getFullYear());
+
+
+const contactForm = document.querySelector('#contact-form');
+if (contactForm) {
+  const formStatus = document.querySelector('#form-status');
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (contactForm.elements._honey.value) return;
+
+    const originalLabel = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/filipehenriqueedson@gmail.com', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== 'true') {
+        throw new Error('Não foi possível enviar agora.');
+      }
+      contactForm.reset();
+      formStatus.textContent = 'Mensagem enviada! Obrigado pelo contato.';
+      formStatus.classList.add('is-success');
+    } catch (error) {
+      formStatus.textContent = 'Não conseguimos enviar a mensagem agora. Tente novamente ou escreva para filipehenriqueedson@gmail.com.';
+      formStatus.classList.add('is-error');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalLabel;
+    }
+  });
+}
