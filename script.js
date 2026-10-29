@@ -55,18 +55,16 @@ if (contactForm) {
 
     try {
       const formData = new FormData(contactForm);
-      const payload = Object.fromEntries(formData.entries());
-      delete payload._honey;
-      payload._subject = 'Nova mensagem pelo portfólio — ' + (payload.subject || 'Contato');
-      payload._replyto = payload.email;
+      formData.delete('_honey');
+      formData.set('_subject', 'Nova mensagem pelo portfólio — ' + (formData.get('subject') || 'Contato'));
+      formData.set('_replyto', String(formData.get('email') || ''));
 
       const response = await fetch('https://formsubmit.co/ajax/filipehenriqueedson@gmail.com', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: formData
       });
 
       const result = await response.json();
