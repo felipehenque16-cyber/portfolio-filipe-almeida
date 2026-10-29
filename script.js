@@ -83,10 +83,14 @@ if (contactForm) {
     } catch (error) {
       console.error('Erro ao enviar formulário de contato:', error);
       const reason = String(error.message || '');
-      if (/activation|activate|activat/i.test(reason)) {
-        formStatus.textContent = 'O formulário precisa ser ativado pelo proprietário. Filipe deve abrir o e-mail de confirmação enviado pelo FormSubmit e clicar no link de ativação.';
+      if (/activation|activate|activat|confirm/i.test(reason)) {
+        formStatus.textContent = 'O FormSubmit ainda precisa de ativação. Verifique a caixa de entrada e o spam de filipehenriqueedson@gmail.com e confirme o formulário pelo e-mail recebido.';
+      } else if (/web server|html files|referer|referrer/i.test(reason)) {
+        formStatus.textContent = 'O serviço recusou a página de origem. Abra o portfólio pelo endereço publicado no GitHub Pages, não por um arquivo HTML local.';
+      } else if (/failed to fetch|networkerror|load failed/i.test(reason)) {
+        formStatus.textContent = 'O navegador não conseguiu conectar ao serviço de envio. Confira a conexão e tente novamente; se persistir, precisamos verificar o bloqueio no navegador ou no serviço.';
       } else {
-        formStatus.textContent = 'Não conseguimos enviar a mensagem agora. Tente novamente ou escreva para filipehenriqueedson@gmail.com.';
+        formStatus.textContent = 'Falha no envio: ' + (reason || 'resposta inesperada do serviço') + ' — você também pode escrever para filipehenriqueedson@gmail.com.';
       }
       formStatus.classList.add('is-error');
     } finally {
