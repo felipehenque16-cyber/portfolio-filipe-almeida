@@ -40,37 +40,57 @@ const contactForm = document.querySelector('#contact-form');
 if (contactForm) {
   const formStatus = document.querySelector('#form-status');
   const submitButton = contactForm.querySelector('button[type="submit"]');
-  const responseFrame = document.querySelector('#contact-form-response');
-  let waitingForResponse = false;
+  const originalButtonText = submitButton ? submitButton.innerHTML : 'Enviar mensagem ↗';
 
-  // A submissão HTML tradicional não usa fetch e, portanto, evita o preflight CORS.
-  contactForm.action = 'https://formsubmit.co/filipehenriqueedson@gmail.com';
+  contactForm.action = 'https://formspree.io/f/mljjlakn';
   contactForm.method = 'POST';
-  contactForm.target = 'contact-form-response';
-  contactForm.setAttribute('enctype', 'application/x-www-form-urlencoded');
 
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
     const honeypot = contactForm.querySelector('[name="_honey"]');
-    if (honeypot && honeypot.value) {
-      event.preventDefault();
-      return;
+    if (honeypot && honeypot.value) return;
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    }
+    if (formStatus) {
+      formStatus.textContent = 'Enviando sua mensagem...';
+      formStatus.className = 'form-status';
     }
 
-    waitingForResponse = true;
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
-    formStatus.textContent = 'Enviando sua mensagem ao serviço...';
-    formStatus.className = 'form-status';
-  });
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
 
-  if (responseFrame) {
-    responseFrame.addEventListener('load', () => {
-      if (!waitingForResponse) return;
-      waitingForResponse = false;
-      submitButton.disabled = false;
-      submitButton.textContent = 'Enviar mensagem ↗';
-      formStatus.textContent = 'A solicitação foi encaminhada ao serviço. Não foi possível confirmar a entrega do e-mail nesta página. Se for seu primeiro envio, confira a caixa de entrada e o spam para ativar o FormSubmit.';
-      formStatus.classList.add('is-success');
-    });
-  }
+      if (!response.ok) {
+        let detail = '';
+        try {
+          const result = await response.json();
+          if (result.errors) detail = ' ' + result.errors.map((item) => item.message).join(' ');
+        } catch (_) {}
+        throw new Error(detail || 'O serviço não aceitou o envio. Confira a configuração do formulário no Formspree.');
+      }
+
+      if (formStatus) {
+        formStatus.textContent = 'Mensagem enviada! Obrigado pelo contato. Se necessário, confira o painel do Formspree para confirmar o recebimento.';
+        formStatus.classList.add('is-success');
+      }
+      contactForm.reset();
+    } catch (error) {
+      if (formStatus) {
+        formStatus.textContent = error.message || 'Não foi possível enviar agora. Tente novamente ou use o e-mail abaixo.';
+        formStatus.classList.add('is-error');
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      }
+    }
+  });
 }
