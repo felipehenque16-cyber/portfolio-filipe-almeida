@@ -43,33 +43,55 @@ if (contactForm) {
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (contactForm.elements._honey.value) return;
 
-    const originalLabel = submitButton.innerHTML;
+    const honeypot = contactForm.querySelector('[name="_honey"]');
+    if (honeypot && honeypot.value) return;
+
+    const originalLabel = submitButton.textContent;
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
     formStatus.textContent = '';
     formStatus.className = 'form-status';
 
     try {
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+      delete payload._honey;
+      payload._subject = 'Nova mensagem pelo portfólio — ' + (payload.subject || 'Contato');
+      payload._replyto = payload.email;
+
       const response = await fetch('https://formsubmit.co/ajax/filipehenriqueedson@gmail.com', {
         method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
       });
+
       const result = await response.json();
-      if (!response.ok || result.success !== 'true') {
-        throw new Error('Não foi possível enviar agora.');
+
+      // O FormSubmit pode retornar HTTP 200 mesmo quando a mensagem não foi aceita.
+      if (!response.ok || String(result.success) !== 'true') {
+        const reason = result.message || 'O serviço de envio não aceitou a mensagem.';
+        throw new Error(reason);
       }
+
       contactForm.reset();
       formStatus.textContent = 'Mensagem enviada! Obrigado pelo contato.';
       formStatus.classList.add('is-success');
     } catch (error) {
-      formStatus.textContent = 'Não conseguimos enviar a mensagem agora. Tente novamente ou escreva para filipehenriqueedson@gmail.com.';
+      console.error('Erro ao enviar formulário de contato:', error);
+      const reason = String(error.message || '');
+      if (/activation|activate|activat/i.test(reason)) {
+        formStatus.textContent = 'O formulário precisa ser ativado pelo proprietário. Filipe deve abrir o e-mail de confirmação enviado pelo FormSubmit e clicar no link de ativação.';
+      } else {
+        formStatus.textContent = 'Não conseguimos enviar a mensagem agora. Tente novamente ou escreva para filipehenriqueedson@gmail.com.';
+      }
       formStatus.classList.add('is-error');
     } finally {
       submitButton.disabled = false;
-      submitButton.innerHTML = originalLabel;
+      submitButton.textContent = originalLabel;
     }
   });
 }
