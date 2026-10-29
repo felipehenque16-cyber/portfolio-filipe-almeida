@@ -77,13 +77,13 @@ if (contactForm) {
       }
 
       if (formStatus) {
-        formStatus.textContent = 'Obrigado por entrar em contato! Sua mensagem foi enviada. Vou ler com atenção e retornarei assim que possível.';
+        formStatus.textContent = 'Obrigado pelo contato! Sua mensagem foi recebida. Retornarei assim que possível.';
         formStatus.classList.add('is-success');
       }
       contactForm.reset();
     } catch (error) {
       if (formStatus) {
-        formStatus.textContent = error.message || 'Não foi possível enviar agora. Tente novamente ou use o e-mail abaixo.';
+        formStatus.textContent = error.message || 'Não foi possível enviar sua mensagem agora. Por favor, tente novamente em alguns instantes.';
         formStatus.classList.add('is-error');
       }
     } finally {
