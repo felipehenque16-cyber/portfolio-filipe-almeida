@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js?v=20261029-4" defer></script>
+  <script src="script.js?v=20261029-5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -112,13 +112,13 @@
     </section>
 
     <section class="contact-section" id="contato"><div class="container contact-inner reveal"><span class="section-kicker">05 / CONTATO</span><h2>Vamos construir<br>algo <span>interessante?</span></h2><p>Estou aberto a conexões, troca de conhecimento e oportunidades de estágio em tecnologia.</p><div class="contact-actions"><a class="button button-light" href="https://www.linkedin.com/in/filipe-almeida-38a53b319/" target="_blank" rel="noreferrer">Meu LinkedIn <span aria-hidden="true">↗</span></a><a class="button button-contact-outline" href="https://github.com/felipehenque16-cyber" target="_blank" rel="noreferrer">Conectar pelo GitHub <span aria-hidden="true">↗</span></a></div>
-      <iframe name="contact-form-response" id="contact-form-response" title="Resposta do envio do formulário" hidden></iframe>\n      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mljjlakn" method="POST">
         <div class="form-heading"><h3>Envie uma mensagem</h3><p>Preencha os campos abaixo. Você não precisa sair do portfólio.</p></div>
         <div class="form-row">
           <label>Seu nome<input type="text" name="name" autocomplete="name" placeholder="Como podemos te chamar?" required maxlength="100"></label>
-          <label>Seu e-mail<input type="email" name="email" autocomplete="email" placeholder="voce@exemplo.com" required maxlength="150"></label>
+          <label>Seu e-mail<input type="email" name="_replyto" autocomplete="email" placeholder="voce@exemplo.com" required maxlength="150"></label>
         </div>
-        <label>Assunto<input type="text" name="subject" placeholder="Sobre o que deseja conversar?" required maxlength="150"></label>
+        <label>Assunto<input type="text" name="_subject" placeholder="Sobre o que deseja conversar?" required maxlength="150"></label>
         <label>Mensagem<textarea name="message" rows="5" placeholder="Escreva sua mensagem aqui..." required maxlength="4000"></textarea></label>
         <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="button button-light form-submit" type="submit">Enviar mensagem <span aria-hidden="true">↗</span></button>
