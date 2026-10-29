@@ -77,7 +77,7 @@ if (contactForm) {
       }
 
       if (formStatus) {
-        formStatus.textContent = 'Mensagem enviada! Obrigado pelo contato. Se necessário, confira o painel do Formspree para confirmar o recebimento.';
+        formStatus.textContent = 'Obrigado por entrar em contato! Sua mensagem foi enviada. Vou ler com atenção e retornarei assim que possível.';
         formStatus.classList.add('is-success');
       }
       contactForm.reset();
