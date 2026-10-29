@@ -40,60 +40,37 @@ const contactForm = document.querySelector('#contact-form');
 if (contactForm) {
   const formStatus = document.querySelector('#form-status');
   const submitButton = contactForm.querySelector('button[type="submit"]');
+  const responseFrame = document.querySelector('#contact-form-response');
+  let waitingForResponse = false;
 
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+  // A submissão HTML tradicional não usa fetch e, portanto, evita o preflight CORS.
+  contactForm.action = 'https://formsubmit.co/filipehenriqueedson@gmail.com';
+  contactForm.method = 'POST';
+  contactForm.target = 'contact-form-response';
+  contactForm.setAttribute('enctype', 'application/x-www-form-urlencoded');
 
+  contactForm.addEventListener('submit', (event) => {
     const honeypot = contactForm.querySelector('[name="_honey"]');
-    if (honeypot && honeypot.value) return;
+    if (honeypot && honeypot.value) {
+      event.preventDefault();
+      return;
+    }
 
-    const originalLabel = submitButton.textContent;
+    waitingForResponse = true;
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
-    formStatus.textContent = '';
+    formStatus.textContent = 'Enviando sua mensagem ao serviço...';
     formStatus.className = 'form-status';
-
-    try {
-      const formData = new FormData(contactForm);
-      formData.delete('_honey');
-      formData.set('_subject', 'Nova mensagem pelo portfólio — ' + (formData.get('subject') || 'Contato'));
-      formData.set('_replyto', String(formData.get('email') || ''));
-
-      const response = await fetch('https://formsubmit.co/ajax/filipehenriqueedson@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      });
-
-      const result = await response.json();
-
-      // O FormSubmit pode retornar HTTP 200 mesmo quando a mensagem não foi aceita.
-      if (!response.ok || String(result.success) !== 'true') {
-        const reason = result.message || 'O serviço de envio não aceitou a mensagem.';
-        throw new Error(reason);
-      }
-
-      contactForm.reset();
-      formStatus.textContent = 'Mensagem enviada! Obrigado pelo contato.';
-      formStatus.classList.add('is-success');
-    } catch (error) {
-      console.error('Erro ao enviar formulário de contato:', error);
-      const reason = String(error.message || '');
-      if (/activation|activate|activat|confirm/i.test(reason)) {
-        formStatus.textContent = 'O FormSubmit ainda precisa de ativação. Verifique a caixa de entrada e o spam de filipehenriqueedson@gmail.com e confirme o formulário pelo e-mail recebido.';
-      } else if (/web server|html files|referer|referrer/i.test(reason)) {
-        formStatus.textContent = 'O serviço recusou a página de origem. Abra o portfólio pelo endereço publicado no GitHub Pages, não por um arquivo HTML local.';
-      } else if (/failed to fetch|networkerror|load failed/i.test(reason)) {
-        formStatus.textContent = 'O navegador não conseguiu conectar ao serviço de envio. Confira a conexão e tente novamente; se persistir, precisamos verificar o bloqueio no navegador ou no serviço.';
-      } else {
-        formStatus.textContent = 'Falha no envio: ' + (reason || 'resposta inesperada do serviço') + ' — você também pode escrever para filipehenriqueedson@gmail.com.';
-      }
-      formStatus.classList.add('is-error');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = originalLabel;
-    }
   });
+
+  if (responseFrame) {
+    responseFrame.addEventListener('load', () => {
+      if (!waitingForResponse) return;
+      waitingForResponse = false;
+      submitButton.disabled = false;
+      submitButton.textContent = 'Enviar mensagem ↗';
+      formStatus.textContent = 'A solicitação foi encaminhada ao serviço. Não foi possível confirmar a entrega do e-mail nesta página. Se for seu primeiro envio, confira a caixa de entrada e o spam para ativar o FormSubmit.';
+      formStatus.classList.add('is-success');
+    });
+  }
 }
