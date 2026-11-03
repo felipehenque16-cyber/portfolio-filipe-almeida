@@ -1,96 +1,37 @@
 const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+const navMenu = document.querySelector('.nav-menu');
 
-if (menuToggle && navLinks) {
+if (menuToggle && navMenu) {
   menuToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    const open = navMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
   });
 
-  navLinks.querySelectorAll('a').forEach((link) => {
+  navMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
+      navMenu.classList.remove('open');
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.setAttribute('aria-label', 'Abrir menu');
     });
   });
 }
 
-const revealItems = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries, currentObserver) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        currentObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealItems.forEach((item) => observer.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
 const year = document.querySelector('#year');
 if (year) year.textContent = String(new Date().getFullYear());
 
-
-const contactForm = document.querySelector('#contact-form');
-if (contactForm) {
-  const formStatus = document.querySelector('#form-status');
-  const submitButton = contactForm.querySelector('button[type="submit"]');
-  const originalButtonText = submitButton ? submitButton.innerHTML : 'Enviar mensagem ↗';
-
-  contactForm.action = 'https://formspree.io/f/mljjlakn';
-  contactForm.method = 'POST';
-
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const honeypot = contactForm.querySelector('[name="_honey"]');
-    if (honeypot && honeypot.value) return;
-
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Enviando...';
-    }
-    if (formStatus) {
-      formStatus.textContent = 'Enviando sua mensagem...';
-      formStatus.className = 'form-status';
-    }
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { Accept: 'application/json' }
-      });
-
-      if (!response.ok) {
-        let detail = '';
-        try {
-          const result = await response.json();
-          if (result.errors) detail = ' ' + result.errors.map((item) => item.message).join(' ');
-        } catch (_) {}
-        throw new Error(detail || 'O serviço não aceitou o envio. Confira a configuração do formulário no Formspree.');
+const animated = document.querySelectorAll('.section-label, .about-grid, .project, .experience-grid, .learning-card, .skills-details, .contact-grid');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        currentObserver.unobserve(entry.target);
       }
-
-      if (formStatus) {
-        formStatus.textContent = 'Obrigado pelo contato! Sua mensagem foi recebida. Retornarei assim que possível.';
-        formStatus.classList.add('is-success');
-      }
-      contactForm.reset();
-    } catch (error) {
-      if (formStatus) {
-        formStatus.textContent = error.message || 'Não foi possível enviar sua mensagem agora. Por favor, tente novamente em alguns instantes.';
-        formStatus.classList.add('is-error');
-      }
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-      }
-    }
+    });
+  }, { threshold: 0.08 });
+  animated.forEach((item) => {
+    item.classList.add('reveal');
+    observer.observe(item);
   });
 }
