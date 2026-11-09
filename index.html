@@ -51,6 +51,17 @@
                 <a href="#contact" class="nav-link">Contato</a>
             </nav>
             <div class="nav-actions">
+                <div class="language-switch" role="group" aria-label="Selecionar idioma">
+                    <button class="language-btn" type="button" data-language="pt-BR" aria-label="Português do Brasil" title="Português do Brasil" aria-pressed="true">
+                        <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#009b3a"/><path d="M12 2 22 8 12 14 2 8Z" fill="#ffdf00"/><circle cx="12" cy="8" r="3.3" fill="#002776"/></svg>
+                    </button>
+                    <button class="language-btn" type="button" data-language="en" aria-label="English" title="English" aria-pressed="false">
+                        <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><path d="M0 0h24v2H0Zm0 4h24v2H0Zm0 4h24v2H0Zm0 4h24v2H0Z" fill="#b22234"/><path d="M0 0h11v9H0Z" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".45"/><circle cx="5" cy="2" r=".45"/><circle cx="8" cy="2" r=".45"/><circle cx="3.5" cy="4.5" r=".45"/><circle cx="6.5" cy="4.5" r=".45"/><circle cx="2" cy="7" r=".45"/><circle cx="5" cy="7" r=".45"/><circle cx="8" cy="7" r=".45"/></g></svg>
+                    </button>
+                    <button class="language-btn" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">
+                        <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#aa151b"/><path d="M0 4h24v8H0Z" fill="#f1bf00"/></svg>
+                    </button>
+                </div>
                 <button id="theme-toggle" class="theme-btn" type="button" aria-label="Ativar tema claro" aria-pressed="true" title="Ativar tema claro">
                     <span class="theme-switch" aria-hidden="true">
                         <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none">
@@ -106,7 +117,7 @@
                 <div class="glass-card about-card">
                     <h2 class="section-title">Sobre Mim</h2>
                     <p class="about-text">
-                        Atualmente curso <strong>Ciência da Computação</strong> e estou sempre buscando aprender coisas novas, principalmente nas áreas de tecnologia, inteligência artificial e análise de dados.
+                        Atualmente cursando <strong>Ciência da Computação</strong> e estou sempre buscando aprender coisas novas, principalmente nas áreas de tecnologia, inteligência artificial e análise de dados.
                     </p>
                     <p class="about-text">
                         Gosto de criar projetos e encontrar maneiras de usar a tecnologia para resolver problemas do dia a dia. Já desenvolvi projetos pessoais envolvendo sites, plataformas de estudos e ferramentas com apoio de IA. Estou em constante aprendizado, gosto de aprender na prática, testar ideias e melhorar cada projeto aos poucos.
@@ -242,6 +253,10 @@
                 <div class="glass-card contact-card">
                     <span class="form-eyebrow">MANDE UMA MENSAGEM</span>
                     <form id="contact-form" class="contact-form">
+                        <div class="form-honeypot" aria-hidden="true">
+                            <label for="website">Não preencha este campo</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="name">Nome</label>
