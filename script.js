@@ -388,17 +388,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                 });
 
-                const result = await response.json();
+                const result = await response.json().catch(() => ({}));
 
                 if (response.ok && result.success) {
                     showFeedback(translatedFeedback('Mensagem enviada com sucesso! Em breve entrarei em contato.'), 'success');
                     contactForm.reset();
                     if (messageCount) messageCount.textContent = '0';
                 } else {
-                    showEmailFallback(name, email, whatsapp, company, subject, message);
+                    const reason = result.message || `O servidor respondeu com o erro HTTP ${response.status}.`;
+                    showEmailFallback(name, email, whatsapp, company, subject, message, reason);
                 }
-            } catch {
-                showEmailFallback(name, email, whatsapp, company, subject, message);
+            } catch (error) {
+                showEmailFallback(
+                    name,
+                    email,
+                    whatsapp,
+                    company,
+                    subject,
+                    message,
+                    'Não foi possível conectar à API do portfólio. Verifique se o deploy da Vercel está ativo.'
+                );
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
@@ -419,10 +428,13 @@ document.addEventListener('DOMContentLoaded', () => {
         formFeedback.style.display = 'block';
     }
 
-    function showEmailFallback(name, email, whatsapp, company, subject, message) {
+    function showEmailFallback(name, email, whatsapp, company, subject, message, reason) {
         if (!formFeedback) return;
 
-        showFeedback(translatedFeedback('Não foi possível enviar pelo formulário. Você ainda pode enviar sua mensagem por e-mail: '), 'error');
+        const errorText = document.createElement('p');
+        errorText.textContent = `Não foi possível enviar pelo formulário. Motivo: ${reason || 'erro desconhecido'}. Você ainda pode enviar sua mensagem por e-mail: `;
+        showFeedback('', 'error');
+        formFeedback.appendChild(errorText);
 
         const emailSubject = `${subject} - ${name}`;
         const body = [
