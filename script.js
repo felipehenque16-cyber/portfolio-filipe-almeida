@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const heading = document.createElement('strong');
         heading.className = 'mail-chooser-title';
-        heading.textContent = reason ? text.error : text.title;
+        heading.textContent = text.title;
 
         const description = document.createElement('p');
         description.className = 'mail-chooser-note';
