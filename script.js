@@ -464,4 +464,14 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--mouse-y', `${y}px`);
         });
     });
+    // Assistente flutuante: carregamento independente para não interferir no formulário.
+    const assistantStyles = document.createElement('link');
+    assistantStyles.rel = 'stylesheet';
+    assistantStyles.href = 'assistant.css';
+    document.head.appendChild(assistantStyles);
+    const assistantScript = document.createElement('script');
+    assistantScript.src = 'assistant.js';
+    assistantScript.defer = true;
+    document.body.appendChild(assistantScript);
+
 });
