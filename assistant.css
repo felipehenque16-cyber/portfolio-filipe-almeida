@@ -1,0 +1,26 @@
+/* Assistente flutuante do portfólio */
+#portfolio-assistant{position:fixed;right:22px;bottom:22px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;font-family:inherit;color:var(--text-primary)}
+#portfolio-assistant *{box-sizing:border-box}
+.pa-launch{width:58px;height:58px;border:0;border-radius:50%;background:var(--gradient-accent);color:#fff;font-size:25px;cursor:pointer;box-shadow:0 8px 28px rgba(14,165,233,.35)}
+.pa-panel{display:none;width:min(360px,calc(100vw - 28px));height:min(520px,calc(100dvh - 110px));margin-bottom:12px;border:1px solid var(--border-glass);border-radius:20px;background:var(--bg-main);box-shadow:0 18px 60px rgba(0,0,0,.28);overflow:hidden;flex-direction:column}
+#portfolio-assistant.pa-open .pa-panel{display:flex}
+#portfolio-assistant.pa-open .pa-launch{display:none}
+.pa-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--border-glass);background:var(--bg-card)}
+.pa-brand{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.pa-avatar{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gradient-accent);color:#fff}
+.pa-head-actions{display:flex;gap:6px}
+.pa-head button{border:1px solid var(--border-glass);border-radius:20px;padding:6px 10px;background:transparent;color:var(--text-muted);font:inherit;font-size:11px;cursor:pointer}
+.pa-messages{flex:1;overflow:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.pa-msg{max-width:88%;padding:10px 12px;border:1px solid var(--border-glass);border-radius:14px;background:var(--bg-card);font-size:13px;line-height:1.45;white-space:pre-line}
+.pa-msg.bot{align-self:flex-start;border-bottom-left-radius:4px}
+.pa-msg.user{align-self:flex-end;background:var(--gradient-accent);color:#fff;border-color:transparent;border-bottom-right-radius:4px}
+.pa-msg a,.pa-msg button{color:var(--accent-color)}
+.pa-actions{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}
+.pa-chip{border:1px solid var(--border-glass);border-radius:18px;padding:6px 10px;background:var(--bg-card);color:var(--text-muted);font:inherit;font-size:11px;cursor:pointer}
+.pa-chip:hover,.pa-head button:hover{border-color:var(--accent-color);color:var(--accent-color)}
+.pa-footer{display:flex;gap:7px;padding:10px 12px;border-top:1px solid var(--border-glass)}
+.pa-input{min-width:0;flex:1;padding:10px 12px;border:1px solid var(--border-glass);border-radius:11px;background:var(--bg-card);color:var(--text-primary);font:inherit;font-size:13px}
+.pa-send{width:42px;border:0;border-radius:11px;background:var(--gradient-accent);color:white;font-size:19px;cursor:pointer}
+.pa-note{padding:0 13px 8px;color:var(--text-muted);font-size:10px}
+@media(max-width:480px){#portfolio-assistant{right:12px;bottom:12px}.pa-panel{width:calc(100vw - 24px);height:min(510px,calc(100dvh - 90px))}}
+@media(prefers-reduced-motion:no-preference){.pa-panel{animation:pa-in .18s ease-out}@keyframes pa-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
