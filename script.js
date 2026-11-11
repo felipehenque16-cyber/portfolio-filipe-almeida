@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = labels[currentLanguage] || labels['pt-BR'];
         const emailPayload = {
             to: RECIPIENT_EMAIL,
-            subject: `${subject} - ${name}`,
+            subject,
             body: createEmailBody(name, email, whatsapp, company, message)
         };
         const encodedMessage = `to=${encodeURIComponent(emailPayload.to)}&subject=${encodeURIComponent(emailPayload.subject)}&body=${encodeURIComponent(emailPayload.body)}`;
