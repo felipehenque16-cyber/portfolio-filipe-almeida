@@ -371,6 +371,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
+                if (window.location.protocol === 'file:' || window.location.hostname.endsWith('github.io')) {
+                    showEmailProviderChooser(name, email, whatsapp, company, subject, message);
+                    return;
+                }
+
                 const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: {
@@ -396,10 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (messageCount) messageCount.textContent = '0';
                 } else {
                     const reason = result.message || `O servidor respondeu com o erro HTTP ${response.status}.`;
-                    showEmailFallback(name, email, whatsapp, company, subject, message, reason);
+                    showEmailProviderChooser(name, email, whatsapp, company, subject, message, reason);
                 }
             } catch (error) {
-                showEmailFallback(
+                showEmailProviderChooser(
                     name,
                     email,
                     whatsapp,
@@ -428,27 +433,112 @@ document.addEventListener('DOMContentLoaded', () => {
         formFeedback.style.display = 'block';
     }
 
-    function showEmailFallback(name, email, whatsapp, company, subject, message, reason) {
+    function showEmailProviderChooser(name, email, whatsapp, company, subject, message, reason) {
         if (!formFeedback) return;
 
-        const errorText = document.createElement('p');
-        errorText.textContent = `Não foi possível enviar pelo formulário. Motivo: ${reason || 'erro desconhecido'}. Você ainda pode enviar sua mensagem por e-mail: `;
-        showFeedback('', 'error');
-        formFeedback.appendChild(errorText);
+        const labels = {
+            'pt-BR': {
+                title: 'Escolha onde abrir seu e-mail',
+                note: 'Sua mensagem já vai preenchida. Escolha um provedor para continuar.',
+                open: 'Abrir',
+                error: `Não foi possível enviar automaticamente (${reason || 'erro desconhecido'}). Escolha um e-mail para continuar.`
+            },
+            en: {
+                title: 'Choose where to open your email',
+                note: 'Your message is ready. Choose a provider to continue.',
+                open: 'Open',
+                error: `Automatic sending failed (${reason || 'unknown error'}). Choose an email provider to continue.`
+            },
+            es: {
+                title: 'Elige dónde abrir tu correo',
+                note: 'Tu mensaje ya está preparado. Elige un proveedor para continuar.',
+                open: 'Abrir',
+                error: `No se pudo enviar automáticamente (${reason || 'error desconocido'}). Elige un correo para continuar.`
+            }
+        };
+        const text = labels[currentLanguage] || labels['pt-BR'];
+        const emailPayload = {
+            to: RECIPIENT_EMAIL,
+            subject: `${subject} - ${name}`,
+            body: createEmailBody(name, email, whatsapp, company, message)
+        };
+        const encodedMessage = `to=${encodeURIComponent(emailPayload.to)}&subject=${encodeURIComponent(emailPayload.subject)}&body=${encodeURIComponent(emailPayload.body)}`;
+        const providers = [
+            {
+                name: 'iCloud Mail',
+                className: 'icloud',
+                icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="mail-icloud-gradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#57c7fa"/><stop offset="1" stop-color="#1685e5"/></linearGradient></defs><path fill="url(#mail-icloud-gradient)" d="M13.762 4.29a6.51 6.51 0 0 0-5.669 3.332 3.571 3.571 0 0 0-1.558-.36 3.571 3.571 0 0 0-3.516 3A4.918 4.918 0 0 0 0 14.796a4.918 4.918 0 0 0 4.92 4.914 4.93 4.93 0 0 0 .617-.045h14.42c2.305-.272 4.041-2.258 4.043-4.589v-.009a4.594 4.594 0 0 0-3.727-4.508 6.51 6.51 0 0 0-6.511-6.27z"/></svg>',
+                url: `https://www.icloud.com/mail/compose?${encodedMessage}`
+            },
+            {
+                name: 'Yahoo Mail',
+                className: 'yahoo',
+                icon: '<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#6001d2" d="M2 5h7l5 11 5-11h7L16 25h-7l3-6z"/><path fill="#6001d2" d="M21 22h7v7h-7z"/></svg>',
+                url: `https://compose.mail.yahoo.com/?${encodedMessage}`
+            },
+            {
+                name: 'Outlook',
+                className: 'outlook',
+                icon: '<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0078d4" d="M14 5h14v22H14z"/><path fill="#28a8ea" d="M4 10h13l10 6-10 6H4z"/><path fill="#0b63b5" d="M4 10v12l9 5V5z"/><path fill="#fff" d="m5.5 12 7.5 4.7 7.5-4.7v8L13 24.7l-7.5-4.6z"/><path fill="#0078d4" d="M5.5 12 13 17l7.5-5v2L13 19l-7.5-5z"/></svg>',
+                url: `https://outlook.live.com/mail/0/deeplink/compose?${encodedMessage}`
+            },
+            {
+                name: 'Gmail',
+                className: 'gmail',
+                icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285f4" d="M18.5 20.5h3.86c.9 0 1.64-.73 1.64-1.64V5.46c0-.57-.15-1.08-.42-1.5l-5.08 3.8z"/><path fill="#34a853" d="M0 5.46v13.4c0 .9.73 1.64 1.64 1.64H5.5V7.76L.42 3.96A2.7 2.7 0 0 0 0 5.46"/><path fill="#ea4335" d="m5.5 7.76 6.5 4.88 6.5-4.88V3.5L12 8.38 5.5 3.5z"/><path fill="#c5221f" d="M5.5 3.5 3.93 2.32A2.42 2.42 0 0 0 .42 3.96L5.5 7.76z"/><path fill="#fbbc04" d="m18.5 7.76 5.08-3.8a2.42 2.42 0 0 0-3.5-1.64L18.5 3.5z"/></svg>',
+                url: `https://mail.google.com/mail/?view=cm&fs=1&${encodedMessage}`
+            }
+        ];
 
-        const emailSubject = `${subject} - ${name}`;
+        const heading = document.createElement('strong');
+        heading.className = 'mail-chooser-title';
+        heading.textContent = reason ? text.error : text.title;
+
+        const description = document.createElement('p');
+        description.className = 'mail-chooser-note';
+        description.textContent = text.note;
+
+        const options = document.createElement('div');
+        options.className = 'mail-provider-options';
+        providers.forEach((provider) => {
+            const link = document.createElement('a');
+            link.className = `mail-provider mail-provider-${provider.className}`;
+            link.href = provider.url;
+            link.setAttribute('aria-label', `${text.open} ${provider.name}`);
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+
+            const icon = document.createElement('span');
+            icon.className = `mail-provider-icon mail-provider-icon-${provider.className}`;
+            icon.setAttribute('aria-hidden', 'true');
+            icon.innerHTML = provider.icon;
+
+            const label = document.createElement('span');
+            label.className = 'mail-provider-label';
+            label.textContent = provider.name;
+            link.append(icon, label);
+            options.appendChild(link);
+        });
+
+        showFeedback('', 'info');
+        formFeedback.append(heading, description, options);
+        formFeedback.focus();
+    }
+
+    function createEmailBody(name, email, whatsapp, company, message) {
         const body = [
-            `Nome: ${name}`,
+            `${currentLanguage === 'en' ? 'Name' : currentLanguage === 'es' ? 'Nombre' : 'Nome'}: ${name}`,
             `E-mail: ${email}`,
             whatsapp ? `WhatsApp: ${whatsapp}` : '',
-            company ? `Empresa: ${company}` : '',
+            company ? `${currentLanguage === 'en' ? 'Company' : 'Empresa'}: ${company}` : '',
             '',
             message
         ].filter(Boolean).join('\n');
-        const emailLink = document.createElement('a');
-        emailLink.href = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body)}`;
-        emailLink.textContent = `${translatedFeedback('abrir e-mail para')} ${RECIPIENT_EMAIL}`;
-        formFeedback.appendChild(emailLink);
+        return body;
+    }
+
+    function createEmailUrl(to, subject, body) {
+        return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     // ==========================================================================

@@ -766,6 +766,66 @@ body {
     border-color: #ef4444;
 }
 
+.form-feedback.info {
+    border-color: var(--accent-color);
+}
+
+.mail-chooser-title {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.mail-chooser-note {
+    margin: 0 0 0.8rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.mail-provider-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+}
+
+.form-feedback .mail-provider {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    padding: 0.55rem 0.7rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.form-feedback .mail-provider:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.mail-provider-icon {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    flex: none;
+    place-items: center;
+}
+
+.mail-provider-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.mail-provider-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .form-feedback.success {
     border-color: #22c55e;
 }
@@ -773,6 +833,12 @@ body {
 .form-feedback a {
     color: inherit;
     font-weight: 700;
+}
+
+@media (max-width: 420px) {
+    .mail-provider-options {
+        grid-template-columns: 1fr;
+    }
 }
 
 :focus-visible {

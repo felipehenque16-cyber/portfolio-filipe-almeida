@@ -21,6 +21,12 @@ Abra o arquivo `index.html` no navegador. Não é necessário instalar dependên
 4. Selecione a branch `main` e a pasta `/ (root)`, depois clique em **Save**.
 5. Aguarde a publicação. O GitHub mostrará o endereço do site na própria página de configurações.
 
+## Formulário de contato e assistente
+
+- No GitHub Pages e ao abrir o `index.html` diretamente, o formulário oferece iCloud Mail, Yahoo Mail, Outlook e Gmail, com destinatário, assunto e mensagem preenchidos. O GitHub Pages não executa a API em `api/contact.js`.
+- O envio automático do formulário depende da API em hospedagem compatível e das variáveis `RESEND_API_KEY`, `CONTACT_EMAIL_TO` e `CONTACT_EMAIL_FROM`.
+- O assistente responde com base em informações predefinidas neste portfólio; ele não usa um serviço de IA generativa nem envia perguntas a terceiros.
+
 ## Personalizações recomendadas
 
 - Adicionar o endereço público do perfil do LinkedIn.
