@@ -3,6 +3,42 @@ document.addEventListener('DOMContentLoaded', () => {
         en: {
             'Sobre': 'About',
             'Projetos': 'Projects',
+            'Competências': 'Skills',
+            'Cursos e formação complementar': 'Courses and additional training',
+            'Aprendizado contínuo em inteligência artificial, produtividade e análise de dados.': 'Continuous learning in artificial intelligence, productivity, and data analysis.',
+            'Finanças pessoais · PWA': 'Personal finance · PWA',
+            'Fino — Controle Financeiro': 'Fino — Personal Finance',
+            'Aplicação para organizar renda, despesas e receitas extras, acompanhar gastos por categoria e definir limites mensais. Os dados ficam salvos no próprio navegador.': 'An app to organize income, expenses, and extra earnings, track spending by category, and set monthly limits. Data is stored in the browser.',
+            'Ver aplicação ↗': 'Open app ↗',
+            'Código no GitHub ↗': 'Source on GitHub ↗',
+            'Educação · Plataforma de estudos': 'Education · Study platform',
+            'Plataforma de preparação para concurso público, com conteúdos organizados por edital, banco de questões, simulados e acompanhamento do estudo.': 'A public-exam study platform with syllabus-based content, a question bank, mock exams, and study tracking.',
+            'Experimento interativo': 'Interactive experiment',
+            'Experiência visual interativa que explora a passagem entre dia e noite, com estrelas e efeitos animados no navegador.': 'An interactive visual experience exploring the day-night cycle, with stars and browser animations.',
+            'Estudante de Ciência da Computação com interesse em': 'Computer Science student interested in',
+            'tecnologia e inteligência artificial.': 'technology and artificial intelligence.',
+            'Sou': 'I am',
+            'estudante de Ciência da Computação. Gosto de aprender na prática e transformar ideias em projetos e soluções digitais, explorando desenvolvimento web e inteligência artificial.': 'a Computer Science student. I enjoy learning by doing and turning ideas into digital projects and solutions, exploring web development and artificial intelligence.',
+            'Minha trajetória na tecnologia é construída principalmente por meio dos estudos e de projetos próprios. Gosto de entender como as ferramentas funcionam, experimentar possibilidades e transformar ideias em aplicações úteis no dia a dia.': 'My path in technology is built mainly through study and personal projects. I enjoy understanding how tools work, exploring possibilities, and turning ideas into useful everyday applications.',
+            'Tenho explorado o desenvolvimento web e o uso de inteligência artificial como apoio à criação e melhoria de soluções. Procuro evoluir com consistência, reconhecer o que ainda preciso aprender e manter uma postura aberta a feedbacks e novos desafios.': 'I have been exploring web development and using artificial intelligence to support the creation and improvement of solutions. I aim to grow consistently, recognize what I still need to learn, and stay open to feedback and new challenges.',
+            'Fundamentos de programação, lógica, algoritmos e contato inicial com análise de dados e ferramentas de inteligência artificial.': 'Programming fundamentals, logic, algorithms, and introductory exposure to data analysis and AI tools.',
+            'HTML, CSS e JavaScript aplicados em páginas e projetos pessoais, com atenção à responsividade, organização e experiência de uso.': 'HTML, CSS, and JavaScript applied to personal websites and projects, with attention to responsiveness, structure, and user experience.',
+            'Ferramentas e desenvolvimento': 'Tools and development',
+            'Git e GitHub, Visual Studio Code, armazenamento local no navegador e publicação de projetos web. Em evolução nos fundamentos de Python.': 'Git and GitHub, Visual Studio Code, browser local storage, and web project publishing. Continuing to develop Python fundamentals.',
+            'Universidade Federal da Paraíba (UFPB)': 'Federal University of Paraíba (UFPB)',
+            'Inteligência Artificial I — Conceitos e Prompts': 'Artificial Intelligence I — Concepts and Prompts',
+            'Inteligência Artificial II — Introdução às IAs para o Mundo Acadêmico': 'Artificial Intelligence II — Introduction to AI for the Academic World',
+            'Fundação Bradesco / Microsoft': 'Bradesco Foundation / Microsoft',
+            'Comunicação e Mobilização com IA': 'Communication and Engagement with AI',
+            'IA para Profissionais da Justiça': 'AI for Legal Professionals',
+            'Introdução à Análise de Dados — Microsoft Power BI': 'Introduction to Data Analysis — Microsoft Power BI',
+            'Santander Open Academy / Google': 'Santander Open Academy / Google',
+            'Inteligência Artificial e Produtividade': 'Artificial Intelligence and Productivity',
+            'Hashtag Treinamentos': 'Hashtag Training',
+            'Imersão Agentes IA': 'AI Agents Immersion',
+            'horas': 'hours',
+            'Estudante de Ciência da Computação': 'Computer Science Student',
+            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portfolio of Filipe Almeida, a Computer Science student interested in technology, artificial intelligence, and web development. Explore his projects and courses.'
             'Contato': 'Contact',
             'Ativar tema claro': 'Enable light theme',
             'Ativar tema escuro': 'Enable dark theme',
@@ -73,6 +109,41 @@ document.addEventListener('DOMContentLoaded', () => {
         es: {
             'Sobre': 'Acerca de',
             'Projetos': 'Proyectos',
+            'Competências': 'Habilidades',
+            'Cursos e formação complementar': 'Cursos y formación complementaria',
+            'Aprendizado contínuo em inteligência artificial, produtividade e análise de dados.': 'Aprendizaje continuo en inteligencia artificial, productividad y análisis de datos.',
+            'Finanças pessoais · PWA': 'Finanzas personales · PWA',
+            'Fino — Controle Financeiro': 'Fino — Control financiero',
+            'Aplicação para organizar renda, despesas e receitas extras, acompanhar gastos por categoria e definir limites mensais. Os dados ficam salvos no próprio navegador.': 'Aplicación para organizar ingresos, gastos e ingresos extra, controlar gastos por categoría y definir límites mensuales. Los datos se guardan en el navegador.',
+            'Ver aplicação ↗': 'Abrir aplicación ↗',
+            'Código no GitHub ↗': 'Código en GitHub ↗',
+            'Educação · Plataforma de estudos': 'Educación · Plataforma de estudio',
+            'Plataforma de preparação para concurso público, com conteúdos organizados por edital, banco de questões, simulados e acompanhamento do estudo.': 'Plataforma de preparación para oposiciones, con contenidos organizados por convocatoria, banco de preguntas, simulacros y seguimiento del estudio.',
+            'Experimento interativo': 'Experimento interactivo',
+            'Experiência visual interativa que explora a passagem entre dia e noite, com estrelas e efeitos animados no navegador.': 'Experiencia visual interactiva que explora el paso del día a la noche, con estrellas y efectos animados en el navegador.',
+            'Estudante de Ciência da Computação com interesse em': 'Estudiante de Ciencias de la Computación interesado en',
+            'tecnologia e inteligência artificial.': 'tecnología e inteligencia artificial.',
+            'estudante de Ciência da Computação. Gosto de aprender na prática e transformar ideias em projetos e soluções digitais, explorando desenvolvimento web e inteligência artificial.': 'estudiante de Ciencias de la Computación. Me gusta aprender haciendo y convertir ideas en proyectos y soluciones digitales, explorando el desarrollo web y la inteligencia artificial.',
+            'Minha trajetória na tecnologia é construída principalmente por meio dos estudos e de projetos próprios. Gosto de entender como as ferramentas funcionam, experimentar possibilidades e transformar ideias em aplicações úteis no dia a dia.': 'Mi camino en la tecnología se construye principalmente a través del estudio y de proyectos propios. Me gusta entender cómo funcionan las herramientas, explorar posibilidades y convertir ideas en aplicaciones útiles.',
+            'Tenho explorado o desenvolvimento web e o uso de inteligência artificial como apoio à criação e melhoria de soluções. Procuro evoluir com consistência, reconhecer o que ainda preciso aprender e manter uma postura aberta a feedbacks e novos desafios.': 'He explorado el desarrollo web y el uso de la inteligencia artificial para apoyar la creación y mejora de soluciones. Busco avanzar con constancia, reconocer lo que aún necesito aprender y mantenerme abierto a comentarios y nuevos retos.',
+            'Fundamentos de programação, lógica, algoritmos e contato inicial com análise de dados e ferramentas de inteligência artificial.': 'Fundamentos de programación, lógica, algoritmos y contacto inicial con análisis de datos y herramientas de inteligencia artificial.',
+            'HTML, CSS e JavaScript aplicados em páginas e projetos pessoais, com atenção à responsividade, organização e experiência de uso.': 'HTML, CSS y JavaScript aplicados a páginas y proyectos personales, con atención a la adaptabilidad, organización y experiencia de uso.',
+            'Ferramentas e desenvolvimento': 'Herramientas y desarrollo',
+            'Git e GitHub, Visual Studio Code, armazenamento local no navegador e publicação de projetos web. Em evolução nos fundamentos de Python.': 'Git y GitHub, Visual Studio Code, almacenamiento local en el navegador y publicación de proyectos web. Continúo desarrollando los fundamentos de Python.',
+            'Universidade Federal da Paraíba (UFPB)': 'Universidad Federal de Paraíba (UFPB)',
+            'Inteligência Artificial I — Conceitos e Prompts': 'Inteligencia Artificial I — Conceptos y Prompts',
+            'Inteligência Artificial II — Introdução às IAs para o Mundo Acadêmico': 'Inteligencia Artificial II — Introducción a las IA para el Mundo Académico',
+            'Fundação Bradesco / Microsoft': 'Fundación Bradesco / Microsoft',
+            'Comunicação e Mobilização com IA': 'Comunicación y movilización con IA',
+            'IA para Profissionais da Justiça': 'IA para profesionales de la justicia',
+            'Introdução à Análise de Dados — Microsoft Power BI': 'Introducción al análisis de datos — Microsoft Power BI',
+            'Santander Open Academy / Google': 'Santander Open Academy / Google',
+            'Inteligência Artificial e Produtividade': 'Inteligencia artificial y productividad',
+            'Hashtag Treinamentos': 'Hashtag Formación',
+            'Imersão Agentes IA': 'Inmersión en agentes de IA',
+            'horas': 'horas',
+            'Estudante de Ciência da Computação': 'Estudiante de Ciencias de la Computación',
+            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portafolio de Filipe Almeida, estudiante de Ciencias de la Computación interesado en tecnología, inteligencia artificial y desarrollo web. Conoce sus proyectos y cursos.'
             'Contato': 'Contacto',
             'Ativar tema claro': 'Activar tema claro',
             'Ativar tema escuro': 'Activar tema oscuro',
@@ -209,16 +280,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const labels = {
             'pt-BR': {
-                title: 'Filipe Almeida | Cientista da Computação, Full Stack & Data Analyst',
-                description: 'Portfólio de Filipe Almeida - Graduando em Ciência da Computação, Analista de Dados e Engenheiro Full Stack. Especializado em Node.js, React, Python, Go e Análise de Dados.'
+                title: 'Filipe Almeida | Estudante de Ciência da Computação',
+                description: 'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.'
             },
             en: {
-                title: 'Filipe Almeida | Computer Science, Full Stack & Data Analyst',
-                description: 'Filipe Almeida’s portfolio - Computer Science student, Data Analyst, and Full Stack Engineer. Specialized in Node.js, React, Python, Go, and Data Analysis.'
+                title: 'Filipe Almeida | Computer Science Student',
+                description: 'Portfolio of Filipe Almeida, a Computer Science student interested in technology, artificial intelligence, and web development. Explore his projects and courses.'
             },
             es: {
-                title: 'Filipe Almeida | Ciencias de la Computación, Full Stack y Analista de Datos',
-                description: 'Portafolio de Filipe Almeida - Estudiante de Ciencias de la Computación, Analista de Datos e Ingeniero Full Stack. Especializado en Node.js, React, Python, Go y análisis de datos.'
+                title: 'Filipe Almeida | Estudiante de Ciencias de la Computación',
+                description: 'Portafolio de Filipe Almeida, estudiante de Ciencias de la Computación interesado en tecnología, inteligencia artificial y desarrollo web. Conoce sus proyectos y cursos.'
             }
         }[currentLanguage];
         document.title = labels.title;
