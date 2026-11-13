@@ -31,10 +31,10 @@
   root.querySelector('.pa-launch-avatar-slot').replaceWith(createAvatar('pa-launch-avatar'));
   const messages=root.querySelector('#pa-messages'),input=root.querySelector('#pa-input');
   const topics={
-    sobre:{text:'Filipe é estudante de Ciência da Computação. Gosta de criar projetos, aprender na prática e explorar tecnologia, inteligência artificial e desenvolvimento web.',section:'about',label:'Ver sobre mim'},
-    projetos:{text:'Entre os projetos apresentados estão a plataforma Rumo à Aprovação, voltada a estudos para concursos, e Seu Céu (Dia & Noite), uma experiência interativa com ciclo de dia e noite.',section:'projects',label:'Ver projetos'},
-    habilidades:{text:'O portfólio apresenta conhecimentos e estudos em HTML, CSS, JavaScript, Python e ferramentas de desenvolvimento. As competências estão em evolução, com foco em aprendizado prático.',section:'skills',label:'Ver habilidades'},
-    formacao:{text:'Filipe está no 5º período de Ciência da Computação na Gran Faculdade e concluiu cursos de Inteligência Artificial I e II pela Universidade Federal da Paraíba (UFPB).',section:'about',label:'Ver apresentação'},
+    sobre:{text:'Filipe é estudante de Ciência da Computação. Sua trajetória na tecnologia é construída por meio dos estudos e de projetos próprios, com interesse em desenvolvimento web e inteligência artificial.',section:'about',label:'Ver sobre mim'},
+    projetos:{text:'Entre os projetos apresentados estão o Fino — Controle Financeiro, uma aplicação para organizar renda e despesas; o Rumo à Aprovação, uma plataforma de estudos para concursos; e Seu Céu (Dia & Noite), uma experiência visual interativa.',section:'projects',label:'Ver projetos'},
+    habilidades:{text:'Filipe aplica HTML, CSS e JavaScript em projetos pessoais e utiliza Git, GitHub e Visual Studio Code. Também está desenvolvendo seus fundamentos de Python. As competências estão em evolução.',section:'skills',label:'Ver habilidades'},
+    formacao:{text:'Filipe cursa Ciência da Computação na Gran Faculdade e concluiu os cursos de Inteligência Artificial I e II pela Universidade Federal da Paraíba (UFPB).',section:'about',label:'Ver apresentação'},
     disponibilidade:{text:'Filipe busca oportunidades de estágio, vagas em tecnologia e projetos freelance, com preferência por trabalhar no período da manhã. Para conversar sobre uma oportunidade, use a seção de contato.',section:'contact',label:'Ver contato'},
     contato:{text:'Você pode entrar em contato pelo formulário do portfólio, por e-mail ou pelo WhatsApp.',section:'contact',label:'Ir para contato'}
   };
