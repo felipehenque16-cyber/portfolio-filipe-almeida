@@ -1,39 +1,30 @@
 # Filipe Almeida — Portfólio
 
-Portfólio pessoal responsivo para apresentar minha formação em Ciência da Computação, interesses técnicos e projetos em desenvolvimento.
+Portfólio pessoal responsivo para apresentar minha formação em Ciência da Computação, projetos próprios, cursos e formas de contato.
 
-## Tecnologias
+## Tecnologias do portfólio
 
 - HTML5
 - CSS3
 - JavaScript
-- Google Fonts (DM Sans e Manrope)
+- Google Fonts
 
 ## Executar localmente
 
-Abra o arquivo `index.html` no navegador. Não é necessário instalar dependências ou executar um servidor.
+Abra o arquivo `index.html` no navegador. Não é necessário instalar dependências.
 
-## Publicar gratuitamente com GitHub Pages
+## Publicação
 
-1. Abra **Settings** neste repositório.
-2. Entre em **Pages** no menu lateral.
-3. Em **Build and deployment**, selecione **Deploy from a branch**.
-4. Selecione a branch `main` e a pasta `/ (root)`, depois clique em **Save**.
-5. Aguarde a publicação. O GitHub mostrará o endereço do site na própria página de configurações.
+O site pode ser publicado pelo GitHub Pages usando a branch `main` e a pasta raiz do repositório.
 
-## Formulário de contato e assistente
+## Formulário de contato
 
-- No GitHub Pages e ao abrir o `index.html` diretamente, o formulário oferece iCloud Mail, Yahoo Mail, Outlook e Gmail, com destinatário, assunto e mensagem preenchidos. O GitHub Pages não executa a API em `api/contact.js`.
-- O envio automático do formulário depende da API em hospedagem compatível e das variáveis `RESEND_API_KEY`, `CONTACT_EMAIL_TO` e `CONTACT_EMAIL_FROM`.
-- O assistente responde com base em informações predefinidas neste portfólio; ele não usa um serviço de IA generativa nem envia perguntas a terceiros.
+No GitHub Pages, o formulário prepara a mensagem e permite que a pessoa escolha um provedor de e-mail (Gmail, Outlook, iCloud ou Yahoo). Em uma hospedagem com a API configurada, o envio automático utiliza a rota `/api/contact`.
 
-## Personalizações recomendadas
+## Assistente do portfólio
 
-- Adicionar o endereço público do perfil do LinkedIn.
-- Adicionar um e-mail profissional para contato.
-- Atualizar os projetos à medida que ganharem novas funcionalidades.
-- Revisar as descrições conforme as tecnologias e funcionalidades que estiverem realmente implementadas.
+O assistente flutuante apresenta informações predefinidas sobre formação, projetos, competências e contato. Ele não utiliza IA generativa nem envia mensagens a serviços externos.
 
 ## Observação
 
-Os projetos identificados como “em desenvolvimento” são apresentados como trabalhos em andamento. As descrições devem ser revisadas conforme o estado real de cada projeto.
+Os projetos apresentados são trabalhos pessoais e de estudo. As descrições e tecnologias são mantidas de acordo com o que está implementado nos respectivos repositórios.
