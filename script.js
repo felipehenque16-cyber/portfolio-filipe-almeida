@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Imersão Agentes IA': 'AI Agents Immersion',
             'horas': 'hours',
             'Estudante de Ciência da Computação': 'Computer Science Student',
-            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portfolio of Filipe Almeida, a Computer Science student interested in technology, artificial intelligence, and web development. Explore his projects and courses.'
+            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portfolio of Filipe Almeida, a Computer Science student interested in technology, artificial intelligence, and web development. Explore his projects and courses.',
             'Contato': 'Contact',
             'Ativar tema claro': 'Enable light theme',
             'Ativar tema escuro': 'Enable dark theme',
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Imersão Agentes IA': 'Inmersión en agentes de IA',
             'horas': 'horas',
             'Estudante de Ciência da Computação': 'Estudiante de Ciencias de la Computación',
-            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portafolio de Filipe Almeida, estudiante de Ciencias de la Computación interesado en tecnología, inteligencia artificial y desarrollo web. Conoce sus proyectos y cursos.'
+            'Portfólio de Filipe Almeida, estudante de Ciência da Computação interessado em tecnologia, inteligência artificial e desenvolvimento web. Conheça seus projetos e cursos.': 'Portafolio de Filipe Almeida, estudiante de Ciencias de la Computación interesado en tecnología, inteligencia artificial y desarrollo web. Conoce sus proyectos y cursos.',
             'Contato': 'Contacto',
             'Ativar tema claro': 'Activar tema claro',
             'Ativar tema escuro': 'Activar tema oscuro',
