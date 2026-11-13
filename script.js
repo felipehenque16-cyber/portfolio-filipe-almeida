@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageTranslations = {
         en: {
             'Sobre': 'About',
+            'Formação: Ciência da Computação — Gran Faculdade.': 'Education: Computer Science — Gran Faculdade.',
             'Projetos': 'Projects',
             'Competências': 'Skills',
             'Cursos e formação complementar': 'Courses and additional training',
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         es: {
             'Sobre': 'Acerca de',
+            'Formação: Ciência da Computação — Gran Faculdade.': 'Formación: Ciencias de la Computación — Gran Faculdade.',
             'Projetos': 'Proyectos',
             'Competências': 'Habilidades',
             'Cursos e formação complementar': 'Cursos y formación complementaria',
@@ -345,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. GERENCIAMENTO DE TEMA (DARK / LIGHT) COM PERSISTÊNCIA
     // ==========================================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('portfolio_theme') || 'dark';
+    const savedTheme = localStorage.getItem('portfolio_theme') || 'light';
 
     function setTheme(theme) {
         document.body.setAttribute('data-theme', theme);
